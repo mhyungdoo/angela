@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mi_card/dice_page.dart';
 import 'package:mi_card/xylophone_page.dart';
+import 'package:mi_card/quiz_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -127,6 +128,21 @@ class HomePage extends StatelessWidget {
                             MaterialPageRoute(
                               builder: (BuildContext context) {
                                 return const XylophonePage();
+                              },
+                            ),
+                          );
+                        },
+                      ),
+                      const SizedBox(width: 10),
+                      FloatingActionButton(
+                        backgroundColor: Colors.yellow,
+                        child: const Icon(Icons.quiz),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) {
+                                return const QuizPage();
                               },
                             ),
                           );
