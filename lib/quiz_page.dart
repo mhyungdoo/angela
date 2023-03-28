@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'question.dart';
+
+import 'package:mi_card/quiz_brain.dart';
+
+QuizBrain quizBrain = QuizBrain();
 
 class QuizPage extends StatefulWidget {
   const QuizPage({Key? key}) : super(key: key);
@@ -9,23 +12,7 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-
   List<Icon> scoreKeeper = [];
-
-  List<Question> questionBank = [
-    Question(q: 'You can lead a cow down stairs but not up stairs.', a: false),
-    Question(
-        q: 'Approximately one quarter of human bones are in the feet.',
-        a: true),
-    Question(q: 'A slug\'s blood is green.', a: true),
-  ];
-
-  //
-  // List<bool> answers = [
-  //   false,
-  //   true,
-  //   true
-  // ];
 
   int questionNumber = 0;
 
@@ -43,7 +30,7 @@ class _QuizPageState extends State<QuizPage> {
               padding: const EdgeInsets.all(10.0),
               child: Center(
                 child: Text(
-                  questionBank[questionNumber].questionText,
+                  quizBrain.getQuestionText(questionNumber), // 왜 에러가??
                   // 'This is where the question text will go',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
@@ -68,12 +55,12 @@ class _QuizPageState extends State<QuizPage> {
                 ),
                 onPressed: () {
                   //The user picked true.
-                  bool correctAnswer =
-                      questionBank[questionNumber].questionAnswer;
 
-                  setState(() {
-                    questionNumber++;
-                  });
+                  setState(
+                    () {
+                      quizBrain.nextQuestion();
+                    },
+                  );
 
                   setState(
                     () {
@@ -103,11 +90,14 @@ class _QuizPageState extends State<QuizPage> {
                 ),
                 onPressed: () {
                   //The user picked false.
-                  bool correctAnswer =
-                      questionBank[questionNumber].questionAnswer;
-                  setState(() {
-                    questionNumber++;
-                  });
+
+                  // correctAnswer는 강의에서 print를 하는데 사용하는 bool 변수임.
+                  //           quizBrain.questionBank[questionNumber].questionAnswer = true;
+                  setState(
+                    () {
+                      quizBrain.nextQuestion();
+                    },
+                  );
                   setState(
                     () {
                       scoreKeeper.add(

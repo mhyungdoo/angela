@@ -1,14 +1,13 @@
 class Question {
-
   late String questionText;
   late bool questionAnswer;
 
-  Question({String? q, bool? a}) {
+  // Question( {required String q, required bool a}) {
+  //   questionText = q!;
+  //   questionAnswer = a!;
+  // }
 
-
-   questionText = q!;
-   questionAnswer = a!;
-  }
-
+ Question(this.questionText, this.questionAnswer);
 
 }
+
